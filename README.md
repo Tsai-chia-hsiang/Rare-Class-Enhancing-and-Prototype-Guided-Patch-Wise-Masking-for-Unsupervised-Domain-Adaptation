@@ -1,83 +1,17 @@
-# MIC: Masked Image Consistency for Context-Enhanced Domain Adaptation
-
+# Prototype-Guided Masking for Unsupervised Domain Adaptation
 **by
-[Lukas Hoyer](https://lhoyer.github.io/),
-[Dengxin Dai](https://vas.mpi-inf.mpg.de/dengxin/),
-[Haoran Wang](https://krumo.github.io/), and
-[Luc Van Gool](https://scholar.google.de/citations?user=TwMib_QAAAAJ&hl=en)**
+Kai-Wen Chen; Chen-Kuo Chiang
 
-**[[Arxiv]](https://arxiv.org/abs/2212.01322)**
-**[[Paper]](https://arxiv.org/pdf/2212.01322)**
+**[[Paper]](https://ieeexplore.ieee.org/abstract/document/10447415)**
 
-:bell: We are happy to announce that MIC was accepted at **CVPR23**. :bell:
+:bell: We are happy to announce that Prototype-Guided Masking for Unsupervised Domain Adaptation was accepted at **ICASSP24**. :bell:
 
 ## Overview
+In the domain of Unsupervised Domain Adaptation (UDA), the training process leverages both labeled data from the source domain and unlabeled data from the target domain to facilitate the transfer of knowledge to the target domain. Previous UDA methods have sought to improve robust visual recognition by capitalizing on the consistency among masked images to learn spatial context relations. However, it is imperative to acknowledge that different regions within an image may hold varying degrees of significance across various recognition tasks. The conventional approach typically involves random masking to images, neglecting the evaluation of sample difficulty or ease during the model learning process. To tackle this challenge, we introduce a novel technique, called Prototype-Guided Masking, for semantic segmentation in this paper. It enforces deep models to concentrate on learning from more challenging regions, as opposed to dedicating excessive attention to samples that are easily distinguishable in the initial stages of training. A key component of this approach is the introduction of prototype confidence score, which is utilized to assess and selectively mask images. Experimental results demonstrate that the proposed Prototype-Guided Masking yields highly competitive outcomes when compared to state-of-the-art performance on benchmarks across multiple semantic segmentation datasets.
 
- In unsupervised domain adaptation (UDA), a model trained on source data (e.g. synthetic)
- is adapted to target data (e.g. real-world) without access to target annotation.
- Most previous UDA methods struggle with classes that have a similar visual appearance
- on the target domain as no ground truth is available to learn the slight appearance
- differences. To address this problem, we propose a Masked Image Consistency (MIC) module
- to enhance UDA by learning spatial context relations of the target domain as additional
- clues for robust visual recognition.
+## Acknowledgements
 
- MIC enforces the consistency between predictions of masked target images, where random
- patches are withheld, and pseudo-labels that are generated based on the complete image by
- an exponential moving average teacher. To minimize the consistency loss, the network has
- to learn to infer the predictions of the masked regions from their context.
+This code is based on the following open-source projects. We thank their
+authors for making the source code publicly available.
 
-<img src="./seg1/resources/mic_overview.png" width="900">
-
- Due to its simple and universal concept, MIC can be integrated into various UDA methods
- across different visual recognition tasks such as image classification, semantic
- segmentation, and object detection. MIC significantly improves the state-of-the-art
- performance across the different recognition tasks for synthetic-to-real,
- day-to-nighttime, and clear-to-adverse-weather UDA. For instance, MIC achieves an
- unprecedented UDA performance of 75.9 mIoU and 92.8% on GTA→Cityscapes and
- VisDA-2017, respectively, which corresponds to an improvement of +2.1 and +3.0
- percent points over the previous state of the art.
-
-<img src="./seg1/resources/mic_improvements.png" width="500">
-
-
-The improved domain adaptation performance is also reflected in the example
-predictions on GTA→Cityscapes, Cityscapes→ACDC, and Cityscapes→Foggy Cityscapes
-as shown below.
-
-![MIC Demo](./seg1/resources/mic_demo.gif)
-![Color Palette](./seg1/resources/color_palette.png)
-
-For more information on MIC, please check our
-[[Paper]](https://arxiv.org/pdf/2212.01322).
-
-If you find MIC useful in your research, please consider citing:
-
-```
-@InProceedings{hoyer2023mic,
-  title={{MIC}: Masked Image Consistency for Context-Enhanced Domain Adaptation},
-  author={Hoyer, Lukas and Dai, Dengxin and Wang, Haoran and Van Gool, Luc},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year={2023}
-}
-```
-
-## MIC for Domain-Adaptive Semantic Segmentation
-
-You can find the source code to run MIC on domain-adaptive semantic segmentation
-in the subfolder [seg/](./seg1). For instructions how to set up the environment/datasets and how
-to train MIC for semantic segmentation UDA, please refer to [./seg1/README.md](./seg1/README.md).
-
-We recommend starting with MIC for semantic segmentation as it implements the full set
-of configurations as well as the ablation studies.
-
-## MIC for Domain-Adaptive Image Classification
-
-You can find the source code to run MIC on domain-adaptive image classification
-in the subfolder [cls/](cls/). For instructions how to set up the environment/datasets and how
-to train MIC for image classification UDA, please refer to [cls/README.md](cls/README.md).
-
-## MIC for Domain-Adaptive Object Detection
-
-You can find the source code to run MIC on domain-adaptive object detection
-in the subfolder [det/](det/). For instructions how to set up the environment/datasets and how
-to train MIC for object detection UDA, please refer to [det/README.md](det/README.md).
+* [MIC](https://github.com/lhoyer/MIC)
